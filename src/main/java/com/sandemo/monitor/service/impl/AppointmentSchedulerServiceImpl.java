@@ -91,13 +91,16 @@ public class AppointmentSchedulerServiceImpl {
                                         stringBuilder.append(sessionDto.getMinAgeLimit());
                                         stringBuilder.append(" , available: ");
                                         stringBuilder.append(sessionDto.getAvailableCapacity());
+                                        stringBuilder.append(" , date: ");
+                                        stringBuilder.append(sessionDto.getDate());
                                         stringBuilder.append(System.lineSeparator());
 
-                                        LOG.info("name: {} , pincode: {}, Age: {}, Available: {}",
+                                        LOG.info("name: {} , pincode: {}, Age: {}, Available: {}, date: {}",
                                                 centerDto.getName(),
                                                 centerDto.getPincode(),
                                                 sessionDto.getMinAgeLimit(),
-                                                sessionDto.getAvailableCapacity());
+                                                sessionDto.getAvailableCapacity(),
+                                                sessionDto.getDate());
                                     });
                         }
                     });
@@ -109,7 +112,7 @@ public class AppointmentSchedulerServiceImpl {
                     MailDto.builder()
                     .mailFrom("sankar.mm30@gmail.com")
                     .mailTo("sankar.mm30@gmail.com")
-                    .mailSubject("URGENT: Vaccine Appointment Available")
+                    .mailSubject("URGENT: Vaccine Appointment Available for date: "+ this.date)
                     .mailContent(stringBuilder.toString())
                     .build();
 
